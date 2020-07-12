@@ -32,23 +32,29 @@
 
 <div>
     <h3>See Everyone Who Has Joined:</h3>
+    {% for player in players %}
+        {{player.first_name}} {{player.last_name}}<br>
+    {% endfor %}
+</div><br>
 
-</div>
-
-<form action="confirm" method="POST">
+<form action="/sports/confirm" method="POST">
     {% csrf_token %}
     <input type="submit" value="Confirm and Return to Playground">
 </form>
 
-<form action="edit/{{game_id.id}}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Edit Game">
-</form>
+{% if user.id == game_id.captain.id %}
 
-<form action="delete/{{game_id.id}}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Delete Game">
-</form>
+    <form action="/sports/edit/{{game_id.id}}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Edit Game">
+    </form>
+
+    <form action="/sports/delete/{{game_id.id}}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Delete Game">
+    </form>
+
+{% endif %}
 
 </body>
 </html>

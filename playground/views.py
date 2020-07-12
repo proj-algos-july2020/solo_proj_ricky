@@ -6,10 +6,13 @@ User = apps.get_model('login', 'User')
 
 def index(request):
     user = User.objects.get(id=request.session['userid'])
+    all_games=Game.objects.all().order_by("-created_at")
+
     context = {
         "user":user,
+        "all_games":all_games,
     }
-    return render(request, "sports/index.html", context)
+    return render(request, "sports/index.html",context)
 
 def create_new_game(request):
     user=User.objects.get(id=request.session['userid'])
@@ -29,9 +32,12 @@ def success_page(request, id):
     game_id=Game.objects.get(id=id)
     user=User.objects.get(id=request.session['userid'])
 
+    players=game_id.joiner.all()
+
     context={
         "game_id":game_id,
         "user": user,
+        "players":players,
     }
     return render(request, "sports/success.html", context)
 
@@ -71,6 +77,17 @@ def update_game(request, id):
 
     return redirect("/sports/")
 
+def view_game(request, id):
+    game_id=Game.objects.get(id=id)
+    user=User.objects.get(id=request.session['userid'])
+
+    return redirect(f"/sports/{game_id.id}")
+
+def join_game(request, id):
+    user=User.objects.get(id=request.session['userid'])
+    this_game=Game.objects.get(id=id)
+    this_game.joiner.add(user)
+    return redirect(f"/sports/{this_game.id}")
 
 
 
@@ -79,4 +96,5 @@ def update_game(request, id):
 
 
 
-# Create your views here.
+
+

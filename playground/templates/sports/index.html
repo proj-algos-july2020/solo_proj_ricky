@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <h1>Welcome to the Playground {{user.first_name}} {{user.last_name}}!</h1>
+    <h1>Welcome to the Playground, {{user.first_name}} {{user.last_name}}!</h1>
     <a href="/logout">Logout</a><br><br>
 
     <form action="create_new_game" method="POST">
@@ -20,5 +20,37 @@
         <input type="submit" value="View My Games">
     </form><br><br>
     
+    <table>
+        <tr>
+            <th>Details</th>
+            <th>Join</th>
+            <th>Originator</th>
+            <th>Sport</th>
+            <th>When</th>
+            <th>What Time</th>
+            <th>Location</th>
+            <th>City</th>
+            <th>Zip Code</th>
+            <th>State</th>
+            <th>Comments</th>
+        </tr>
+        {% for this_game in all_games %}
+        <tr>
+            <td><a href="view_game/{{this_game.id}}">View Game</a></td>
+            <td><a href="join_game/{{this_game.id}}">Join Game</a></td>
+            <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
+            <td>{{this_game.sport}}</td>
+            <td>{{this_game.date}}</td>
+            <td>{{this_game.time}}</td>
+            <td>{{this_game.location}}</td>
+            <td>{{this_game.city}}</td>
+            <td>{{this_game.zipcode}}</td>
+            <td>{{this_game.state}}</td>
+            <td>{{this_game.comment}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
 </body>
 </html>

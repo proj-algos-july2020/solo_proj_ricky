@@ -12,6 +12,7 @@ class Game(models.Model):
     time=models.TimeField()
     comment=models.TextField()
     captain=models.ForeignKey("login.User", related_name="game", on_delete=models.CASCADE)
+    joiner=models.ManyToManyField("login.User", related_name="join_game")
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 

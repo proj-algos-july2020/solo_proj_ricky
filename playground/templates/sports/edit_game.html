@@ -9,6 +9,7 @@
 
 <form action="/sports/update_game/{{game_id.id}}" method="POST">
     {% csrf_token %}
+
     <p>Name: {{user.first_name}} {{user.last_name}}</p>
     <p>State:</p>
     <input type="text" name="state" value="{{game_id.state}}">
@@ -36,6 +37,12 @@
     <br><br>
 
     <input type="submit" value="Edit Game">
+    
+</form>
+
+<form action="/sports/confirm" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Return to Playground">
 </form>
 
 </body>
