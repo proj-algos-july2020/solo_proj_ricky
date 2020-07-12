@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success, Game Created</title>
+</head>
+<body>
+    
+    <h1>Game Details</h1>
+    <h4>Hi {{user.first_name}}, See Your Game Details Below:</h4>
+
+<div>
+    <p>What Are We Playing?</p>
+    <p>{{game_id.sport}}</p>
+    <p>When Are We Playing?</p>
+    <p>{{game_id.date}}</p>
+    <p>What Time Are We Playing?</p>
+    <p>{{game_id.time}}</p>
+    <p>Additonal Comments:</p>
+    <p>{{game_id.comment}}</p>
+</div>
+<br>
+
+<div>
+    <p>Location Details:</p>
+    <p>{{game_id.location}}</p>
+    <p>{{game_id.city}}</p>
+    <p>{{game_id.zipcode}}</p>
+    <p>{{game_id.state}}</p>
+</div>
+
+<div>
+    <h3>See Everyone Who Has Joined:</h3>
+
+</div>
+
+<form action="confirm" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm and Return to Playground">
+</form>
+
+<form action="edit/{{game_id.id}}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Edit Game">
+</form>
+
+<form action="delete/{{game_id.id}}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Delete Game">
+</form>
+
+</body>
+</html>

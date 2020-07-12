@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Game Form</title>
+</head>
+<body>
+
+    <h1>Hi, Please Create Your Game Below!</h1>
+    <a href="/logout">Logout</a>
+
+    <form action="game_form" method="POST">
+        {% csrf_token %}
+        <h3>Who's Got Next?!</h3>
+        <h4>Fill out your game information below;</h4>
+
+        <p>Name: {{user.first_name}} {{user.last_name}}</p>
+        <p>State:</p>
+        <input type="text" name="state" placeholder="CA, TX, NV, etc." size="30">
+
+        <p>City:</p>
+        <input type="text" name="city" placeholder="San Jose, Dallas, Seattle, etc." size="30">
+
+        <p>Zip Code:</p>
+        <input type="number" name="zipcode" placeholder="95121, 95135, etc.">
+
+        <p>Location:</p>
+        <input type="text" name="location" placeholder="(park, community center, etc.)" size="30">
+
+        <p>Sport:</p>
+        <input type="text" name="sport" placeholder="basketball, soccer, baseball, etc." size="30">
+
+        <p>When:</p>
+        <input type="date" name="date">
+
+        <p>What Time:</p>
+        <input type="time" name="time">
+
+        <p>Comments:</p>
+        <textarea name="comment" cols="40" rows="5" placeholder="Don't forget your basketball shoes, etc."></textarea><br><br>
+
+        <input type="submit" value="Create Game">
+    </form>
+
+    
+</body>
+</html>

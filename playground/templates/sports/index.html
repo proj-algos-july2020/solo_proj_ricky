@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+</head>
+<body>
+
+    <h1>Welcome to the Playground {{user.first_name}} {{user.last_name}}!</h1>
+    <a href="/logout">Logout</a><br><br>
+
+    <form action="create_new_game" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Create a New Game!">
+    </form><br>
+
+    <form action="view_my_games" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="View My Games">
+    </form><br><br>
+    
+</body>
+</html>
