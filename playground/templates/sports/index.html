@@ -21,13 +21,14 @@
     </form><br><br>
     
     <table>
+        <h3>View All Games</h3>
         <tr>
             <th>Details</th>
             <th>Join</th>
             <th>Originator</th>
             <th>Sport</th>
-            <th>When</th>
-            <th>What Time</th>
+            <th>What Day</th>
+            <th>Meet Up Time</th>
             <th>Location</th>
             <th>City</th>
             <th>Zip Code</th>
@@ -51,6 +52,32 @@
         {% endfor %}
     </table>
 
+
+    <table>
+        <h3>View My Games</h3>
+        <tr>
+          <th>Details</th>
+          <th>Remove From List</th>
+          <th>Originator</th>
+          <th>Sport</th>
+          <th>What Day</th>
+          <th>Meet Up Time</th>
+          <th>Comments</th>
+        </tr>
+        {% for user_game in all_games %}
+            {% if user_game.captain.id == user.id %}
+            <tr>
+                <td><a href="view_game/{{user_game.id}}">View Game</a></td>
+                <td><a href="remove_my_game/{{user_game.id}}">Remove</a></td>
+                <td>{{user_game.captain.first_name}} {{user_game.captain.last_name}}</td>
+                <td>{{user_game.sport}}</td>
+                <td>{{user_game.date}}</td>
+                <td>{{user_game.time}}</td>
+                <td>{{user_game.comment}}</td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+      </table>
 
 </body>
 </html>

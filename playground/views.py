@@ -89,6 +89,13 @@ def join_game(request, id):
     this_game.joiner.add(user)
     return redirect(f"/sports/{this_game.id}")
 
+def remove_my_game(request, id):
+    user=User.objects.get(id=request.session['userid'])
+    this_game=Game.objects.get(id=id)
+    this_game.joiner.remove(user)
+    return redirect("/sports/")
+
+
 
 
 

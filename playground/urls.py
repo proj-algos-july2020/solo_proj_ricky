@@ -11,4 +11,5 @@ urlpatterns=[
     path('update_game/<int:id>', views.update_game),
     path('view_game/<int:id>', views.view_game),
     path('join_game/<int:id>', views.join_game),
+    path('remove_my_game/<int:id>', views.remove_my_game),
 ]
