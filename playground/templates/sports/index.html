@@ -21,7 +21,18 @@
                     }
                 })
             })
-
+            $('#reset').submit(function(e){
+                e.preventDefault()
+                $.ajax({
+                    url: "reset",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(serverResponse){
+                        $('#games').html(serverResponse);
+                        $('#search_bar').trigger('reset');
+                    }
+                })
+            })
         });
     </script>
 
@@ -51,6 +62,11 @@
     <input type="submit" value="Search">
 </form><br>
 
+<form action="reset" method="POST" id="reset">
+    {% csrf_token %}
+    <input type="submit" value="Reset Search">
+</form><br>
+
 <div id="games">
     <table>
         <h3>View All Games</h3>
@@ -59,9 +75,9 @@
             <th>Join</th>
             <th>Originator</th>
             <th>Sport</th>
+            <th>Location</th>
             <th>What Day</th>
             <th>Meet Up Time</th>
-            <th>Location</th>
             <th>City</th>
             <th>Zip Code</th>
             <th>State</th>
@@ -73,9 +89,9 @@
             <td><a href="join_game/{{this_game.id}}">Join</a></td>
             <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
             <td>{{this_game.sport}}</td>
+            <td>{{this_game.location}}</td>
             <td>{{this_game.date}}</td>
             <td>{{this_game.time}}</td>
-            <td>{{this_game.location}}</td>
             <td>{{this_game.city}}</td>
             <td>{{this_game.zipcode}}</td>
             <td>{{this_game.state}}</td>

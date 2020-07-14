@@ -139,6 +139,17 @@ def search(request):
 
     return render(request, "sports/search.html", context)
 
+def reset(request):
+    user = User.objects.get(id=request.session['userid'])
+    all_games=Game.objects.all().order_by("-created_at")
+
+    context = {
+        "user":user,
+        "all_games":all_games,
+    }
+    return render(request, "sports/reset.html",context)
+
+
 
 
 

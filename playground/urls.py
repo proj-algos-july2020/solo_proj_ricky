@@ -13,4 +13,5 @@ urlpatterns=[
     path('join_game/<int:id>', views.join_game),
     path('remove_my_game/<int:id>', views.remove_my_game),
     path('search', views.search),
+    path('reset', views.reset),
 ]
