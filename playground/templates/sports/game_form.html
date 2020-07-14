@@ -10,6 +10,14 @@
     <h1>Hi, Please Create Your Game Below!</h1>
     <a href="/logout">Logout</a>
 
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <form action="game_form" method="POST">
         {% csrf_token %}
         <h3>Who's Got Next?!</h3>
@@ -43,6 +51,10 @@
         <input type="submit" value="Create Game">
     </form>
 
+    <form action="/sports/" method="POST">
+        {% csrf_token %}
+    <input type="submit" value="Return to Playground">
+    </form>
     
 </body>
 </html>

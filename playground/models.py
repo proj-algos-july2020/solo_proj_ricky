@@ -2,6 +2,15 @@ from __future__ import unicode_literals
 from django.db import models
 import bcrypt
 
+class GameManager(models.Manager):
+    def basic_validator(self, postData):
+        errors={}
+        if len(postData['state'])>3:
+            errors["state"]="State needs to follow the format ex: CA, WA, NV, etc."
+        if len(postData['zipcode'])>6:
+            errors['zipcode']="The Zip Code needs to be 5 digits."
+        return errors
+
 class Game(models.Model):
     location=models.CharField(max_length=255)
     state=models.CharField(max_length=2)
@@ -15,4 +24,5 @@ class Game(models.Model):
     joiner=models.ManyToManyField("login.User", related_name="join_game")
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    objects=GameManager()
 

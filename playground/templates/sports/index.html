@@ -37,10 +37,6 @@
         <input type="submit" value="Create a New Game!">
     </form><br>
 
-    <form action="view_my_games" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="View My Games">
-    </form><br><br>
 
 <form action="search" method="POST" id="search_bar">
     {% csrf_token %}
@@ -74,7 +70,7 @@
         {% for this_game in all_games %}
         <tr>
             <td><a href="view_game/{{this_game.id}}">View Game</a></td>
-            <td><a href="join_game/{{this_game.id}}">Join Game</a></td>
+            <td><a href="join_game/{{this_game.id}}">Join</a></td>
             <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
             <td>{{this_game.sport}}</td>
             <td>{{this_game.date}}</td>

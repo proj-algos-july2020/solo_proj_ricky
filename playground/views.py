@@ -22,13 +22,22 @@ def create_new_game(request):
     return render(request, "sports/game_form.html", context)
 
 def game_form(request):
-    user=User.objects.get(id=request.session['userid'])
+    
+    errors=Game.objects.basic_validator(request.POST)
 
-    game=Game.objects.create(location=request.POST['location'], state=request.POST['state'], city=request.POST['city'], zipcode=request.POST['zipcode'], sport=request.POST['sport'], comment=request.POST['comment'], time=request.POST['time'], date=request.POST['date'], captain=user)
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request, value)
+        return redirect('/sports/create_new_game')
+    else:
 
-    game.joiner.add(user)
+        user=User.objects.get(id=request.session['userid'])
 
-    return redirect(f"/sports/{game.id}")
+        game=Game.objects.create(location=request.POST['location'], state=request.POST['state'], city=request.POST['city'], zipcode=request.POST['zipcode'], sport=request.POST['sport'], comment=request.POST['comment'], time=request.POST['time'], date=request.POST['date'], captain=user)
+
+        game.joiner.add(user)
+
+        return redirect(f"/sports/{game.id}")
 
 def success_page(request, id):
     game_id=Game.objects.get(id=id)
@@ -64,20 +73,29 @@ def edit_game(request, id):
     return render(request, "sports/edit_game.html", context)
 
 def update_game(request, id):
+
     game_to_update=Game.objects.get(id=id)
-    user=User.objects.get(id=request.session['userid'])
+    errors=Game.objects.basic_validator(request.POST)
 
-    game_to_update.state=request.POST['state']
-    game_to_update.city=request.POST['city']
-    game_to_update.zipcode=request.POST['zipcode']
-    game_to_update.location=request.POST['location']
-    game_to_update.sport=request.POST['sport']
-    game_to_update.date=request.POST['date']
-    game_to_update.time=request.POST['time']
-    game_to_update.comment=request.POST['comment']
-    game_to_update.save()
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/sports/edit/{game_to_update.id}')
+    else:
+        game_to_update=Game.objects.get(id=id)
+        user=User.objects.get(id=request.session['userid'])
 
-    return redirect("/sports/")
+        game_to_update.state=request.POST['state']
+        game_to_update.city=request.POST['city']
+        game_to_update.zipcode=request.POST['zipcode']
+        game_to_update.location=request.POST['location']
+        game_to_update.sport=request.POST['sport']
+        game_to_update.date=request.POST['date']
+        game_to_update.time=request.POST['time']
+        game_to_update.comment=request.POST['comment']
+        game_to_update.save()
+
+        return redirect("/sports/")
 
 def view_game(request, id):
     game_id=Game.objects.get(id=id)
