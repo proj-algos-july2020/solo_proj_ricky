@@ -26,6 +26,8 @@ def game_form(request):
 
     game=Game.objects.create(location=request.POST['location'], state=request.POST['state'], city=request.POST['city'], zipcode=request.POST['zipcode'], sport=request.POST['sport'], comment=request.POST['comment'], time=request.POST['time'], date=request.POST['date'], captain=user)
 
+    game.joiner.add(user)
+
     return redirect(f"/sports/{game.id}")
 
 def success_page(request, id):
@@ -93,7 +95,31 @@ def remove_my_game(request, id):
     user=User.objects.get(id=request.session['userid'])
     this_game=Game.objects.get(id=id)
     this_game.joiner.remove(user)
+
     return redirect("/sports/")
+
+def search(request):
+    search = Game.objects.all()
+    if request.POST['sport'] != '':
+        search=search.filter(sport=request.POST['sport'])
+    if request.POST['location'] != '':
+        search=search.filter(location=request.POST['location'])
+    if request.POST['date'] != '':
+        search=search.filter(date=request.POST['date'])
+    if request.POST['time'] != '':
+        search=search.filter(time=request.POST['time'])
+    if request.POST['city'] != '':
+        search=search.filter(city=request.POST['city'])
+    if request.POST['zipcode'] != '':
+        search=search.filter(zipcode=request.POST['zipcode'])
+    if request.POST['state'] != '':
+        search=search.filter(state=request.POST['state'])
+
+    context={
+        "all_games":search,
+    }
+
+    return render(request, "sports/search.html", context)
 
 
 

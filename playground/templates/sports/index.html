@@ -3,6 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+
+            $('#search_bar').submit(function(e){
+                e.preventDefault()
+                $.ajax({
+                    url: "search",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(serverResponse){
+                        console.log(serverResponse);
+                        $('#games').html(serverResponse);
+                        $('#search_bar').trigger('reset');
+                    }
+                })
+            })
+
+        });
+    </script>
+
     <title>Playground</title>
 </head>
 <body>
@@ -19,7 +41,21 @@
         {% csrf_token %}
         <input type="submit" value="View My Games">
     </form><br><br>
-    
+
+<form action="search" method="POST" id="search_bar">
+    {% csrf_token %}
+    <h3>Search By:</h3>
+    <input type="text" name="sport" placeholder="Sport">
+    <input type="text" name="location" placeholder="Location">
+    <input type="text" name="date" placeholder="Date">
+    <input type="text" name="time" placeholder="What Time">
+    <input type="text" name="city" placeholder="City">
+    <input type="text" name="zipcode" placeholder="Zip Code">
+    <input type="text" name="state" placeholder="State">
+    <input type="submit" value="Search">
+</form><br>
+
+<div id="games">
     <table>
         <h3>View All Games</h3>
         <tr>
@@ -51,6 +87,7 @@
         </tr>
         {% endfor %}
     </table>
+</div><br>
 
 
     <table>
@@ -65,7 +102,7 @@
           <th>Comments</th>
         </tr>
         {% for user_game in all_games %}
-            {% if user_game.captain.id == user.id %}
+            {% if user in user_game.joiner.all %}
             <tr>
                 <td><a href="view_game/{{user_game.id}}">View Game</a></td>
                 <td><a href="remove_my_game/{{user_game.id}}">Remove</a></td>
