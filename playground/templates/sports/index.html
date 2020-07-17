@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script>
@@ -36,39 +38,76 @@
         });
     </script>
 
+
     <title>Playground</title>
 </head>
-<body>
 
-    <h1>Welcome to the Playground, {{user.first_name}} {{user.last_name}}!</h1>
-    <a href="/logout">Logout</a><br><br>
+<body class="container">
 
-    <form action="create_new_game" method="POST">
+<div class="header p-4">
+    <div class="row">
+        <div class="col-8">
+            <h2>Welcome to the Playground, {{user.first_name}} {{user.last_name}}!</h2>
+        </div>
+
+        <div class="col">
+            <form action="create_new_game" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-info" value="Create a New Game!">
+            </form>
+        </div>
+
+        <div class="col">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<div class="searchbar">
+    <form action="search" method="POST" id="search_bar">
         {% csrf_token %}
-        <input type="submit" value="Create a New Game!">
-    </form><br>
+        <h3>Search By:</h3>
+    <div class="form-row">
+    
+        <div class="form-group col" >
+            <input type="text" class="form-control" name="sport" placeholder="Sport">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="location" placeholder="Location">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="date" placeholder="Date">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="time" placeholder="What Time">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="city" placeholder="City">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="zipcode" placeholder="Zip Code">
+        </div>
+        <div class="form-group col">
+            <input type="text" class="form-control" name="state" placeholder="State">
+        </div>
+        <div class="col">
+            <input type="submit" class="btn btn-info btn-xs p-1 d-inline" value="Search">
+        </div>
+
+        </form>
+    </div>
+</div>
 
 
-<form action="search" method="POST" id="search_bar">
-    {% csrf_token %}
-    <h3>Search By:</h3>
-    <input type="text" name="sport" placeholder="Sport">
-    <input type="text" name="location" placeholder="Location">
-    <input type="text" name="date" placeholder="Date">
-    <input type="text" name="time" placeholder="What Time">
-    <input type="text" name="city" placeholder="City">
-    <input type="text" name="zipcode" placeholder="Zip Code">
-    <input type="text" name="state" placeholder="State">
-    <input type="submit" value="Search">
-</form><br>
 
 <form action="reset" method="POST" id="reset">
     {% csrf_token %}
     <input type="submit" value="Reset Search">
 </form><br>
 
-<div id="games">
-    <table>
+
+<div class="header" id="games">
+    <table class="table table-hover table-bordered text-nowrap small">
         <h3>View All Games</h3>
         <tr>
             <th>Details</th>
