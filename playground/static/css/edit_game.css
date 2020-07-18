@@ -18,9 +18,20 @@ body{
     background: rgba(245, 245, 245, 0.7);
   }
 #name{
-    width: 430px;
+    width: 395px;
     border-bottom: 2px solid black;
 }
 #d_name{
-    width: 470px;
+    width: 450px;
+}
+#game_capt{
+    border-bottom: 1px solid black;
+    width: 230px;
+}
+#container{
+    width: 450px;
+}
+#comments{
+    width: 300px;
+    /* overflow: scroll; */
 }

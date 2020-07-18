@@ -24,43 +24,43 @@
         {% endif %}
     </div>
 
-<div class="container">
-    <form action="/sports/update_game/{{game_id.id}}" method="POST">
+<div id="container" class="container ml-4 mb-3 d-inline-block">
+    <form action="/sports/update_game/{{game_id.id}}" class="d-inline-block" method="POST">
         {% csrf_token %}
         
-        <p>Game Captain: {{user.first_name}} {{user.last_name}}</p>
-        <p>State:</p>
-        <input type="text" name="state" value="{{game_id.state}}">
+        <p id="game_capt" class="font-weight-bold pt-2 pb-0 mb-3 d-inline-block">Game Captain: {{user.first_name}} {{user.last_name}}</p><br>
+        <p class="mb-0 d-inline-block">State:</p><br>
+        <input type="text" class="mb-3 d-inline-block" name="state" value="{{game_id.state}}"><br>
     
-        <p>City:</p>
-        <input type="text" name="city" value="{{game_id.city}}">
+        <p class="mb-0 d-inline-block">City:</p><br>
+        <input type="text" class="mb-3 d-inline-block" name="city" value="{{game_id.city}}"><br>
     
-        <p>Zip Code:</p>
-        <input type="number" name="zipcode" value="{{game_id.zipcode}}">
+        <p class="mb-0 d-inline-block">Zip Code:</p><br>
+        <input type="number" class="mb-3 d-inline-block" name="zipcode" value="{{game_id.zipcode}}"><br>
     
-        <p>Location:</p>
-        <input type="text" name="location" value="{{game_id.location}}">
+        <p class="mb-0 d-inline-block">Location:</p><br>
+        <input type="text" class="mb-3 d-inline-block" name="location" value="{{game_id.location}}"><br>
     
-        <p>Sport:</p>
-        <input type="text" name="sport" value="{{game_id.sport}}">
+        <p class="mb-0 d-inline-block">Sport:</p><br>
+        <input type="text" class="mb-3 d-inline-block" name="sport" value="{{game_id.sport}}"><br>
     
-        <p>When:</p>
-        <input type="date" name="date" value="{{game_id.date}}">
+        <p class="mb-0 d-inline-block">When:</p><br>
+        <input type="date" class="mb-3 d-inline-block" name="date" value="{{game_id.date}}"><br>
     
-        <p>What Time:</p>
-        <input type="time" name="time" value="{{game_id.time}}">
-    
-        <p>Comments:</p>
-        <input type="text" name="comment" value="{{game_id.comment}}">
+        <p class="mb-0 d-inline-block">What Time:</p><br>
+        <input type="time" class="mb-3 d-inline-block" name="time" value="{{game_id.time}}"><br>
+
+        <p class="mb-0 d-inline-block">Comments:</p><br>
+            <input type="text" id="comments" class="mb-0 d-inline-block" name="comment" value="{{game_id.comment}}">
         <br><br>
     
-        <input type="submit" value="Edit Game">
+        <input type="submit" class="btn btn-warning" value="Edit Game">
         
     </form>
     
-    <form action="/sports/confirm" method="POST">
+    <form action="/sports/confirm" class="d-inline-block mr-4 mb-3 mt-2" method="POST">
         {% csrf_token %}
-        <input type="submit" value="Return to Playground">
+        <input type="submit" class="btn btn-info" value="Return to Playground">
     </form>
 </div>
 
