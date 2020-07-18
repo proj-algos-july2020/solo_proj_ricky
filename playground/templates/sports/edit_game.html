@@ -3,55 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/edit_game.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <title>Edit Game</title>
 </head>
 <body>
+    <div id="d_name" class="header m-4 p-2">
+        <h3 id="name" class="text-left">Edit Your {{game_id.sport | title}} Game Info Below:</h3>
+    </div>
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div id="errors" class="errors">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
-<form action="/sports/update_game/{{game_id.id}}" method="POST">
-    {% csrf_token %}
-
-    <p>Name: {{user.first_name}} {{user.last_name}}</p>
-    <p>State:</p>
-    <input type="text" name="state" value="{{game_id.state}}">
-
-    <p>City:</p>
-    <input type="text" name="city" value="{{game_id.city}}">
-
-    <p>Zip Code:</p>
-    <input type="number" name="zipcode" value="{{game_id.zipcode}}">
-
-    <p>Location:</p>
-    <input type="text" name="location" value="{{game_id.location}}">
-
-    <p>Sport:</p>
-    <input type="text" name="sport" value="{{game_id.sport}}">
-
-    <p>When:</p>
-    <input type="date" name="date" value="{{game_id.date}}">
-
-    <p>What Time:</p>
-    <input type="time" name="time" value="{{game_id.time}}">
-
-    <p>Comments:</p>
-    <input type="text" name="comment" value="{{game_id.comment}}">
-    <br><br>
-
-    <input type="submit" value="Edit Game">
+<div class="container">
+    <form action="/sports/update_game/{{game_id.id}}" method="POST">
+        {% csrf_token %}
+        
+        <p>Game Captain: {{user.first_name}} {{user.last_name}}</p>
+        <p>State:</p>
+        <input type="text" name="state" value="{{game_id.state}}">
     
-</form>
+        <p>City:</p>
+        <input type="text" name="city" value="{{game_id.city}}">
+    
+        <p>Zip Code:</p>
+        <input type="number" name="zipcode" value="{{game_id.zipcode}}">
+    
+        <p>Location:</p>
+        <input type="text" name="location" value="{{game_id.location}}">
+    
+        <p>Sport:</p>
+        <input type="text" name="sport" value="{{game_id.sport}}">
+    
+        <p>When:</p>
+        <input type="date" name="date" value="{{game_id.date}}">
+    
+        <p>What Time:</p>
+        <input type="time" name="time" value="{{game_id.time}}">
+    
+        <p>Comments:</p>
+        <input type="text" name="comment" value="{{game_id.comment}}">
+        <br><br>
+    
+        <input type="submit" value="Edit Game">
+        
+    </form>
+    
+    <form action="/sports/confirm" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Return to Playground">
+    </form>
+</div>
 
-<form action="/sports/confirm" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Return to Playground">
-</form>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </body>
 </html>

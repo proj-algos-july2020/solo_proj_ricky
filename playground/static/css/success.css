@@ -14,7 +14,7 @@ body{
     
 }
 .header{
-    background: rgba(245, 245, 245, 0.5);
+    background: rgba(245, 245, 245, 0.7);
   }
 .game_details{
     background: rgba(245, 245, 245, 0.7);
@@ -27,4 +27,67 @@ body{
 }
 .buttons{
     background: rgba(245, 245, 245, 0.7);
+}
+h1{
+    border-bottom: 2px solid black;
+    width: 245px;
+}
+#location_header{
+    font-size: 20px;
+    border-bottom: 1px solid black;
+}
+#location{
+    vertical-align: top;
+    margin-left: 15px;
+}
+#d_first{
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 175px;
+}
+#d_second{
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 175px;
+}
+#d_third{
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 218px;
+}
+#d_fourth{
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    width: 170px;
+}
+#container{
+    margin-right: 0px;
+}
+#sport{
+    width: 325px;
+}
+#title{
+    width: 543px;
+}
+#joins{
+    width: 543px;
+}
+#j_title{
+    border-bottom: 2px solid black;
+    width: 390px;
+}
+#j_info{
+    font-size: 20px;
+}
+#clicks{
+    width: 543px;
+}
+#b1{
+    margin-right: 5px;
+}
+#b2{
+    margin-right: 5px;
+}
+#b3{
+    margin-right: 5px;
 }

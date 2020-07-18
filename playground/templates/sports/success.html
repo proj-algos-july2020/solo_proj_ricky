@@ -10,56 +10,55 @@
     <title>Success, Game Created</title>
 </head>
 
-<body class="container">
+<body id="container" class="container mt-3 mr-0 mb-1 ml-4 pr-0">
     
-    <div class="header">
+    <div id="title" class="header d-inline-block mb-3 p-2 pl-3">
         <h1>Game Details</h1>
-        <h4>Hi {{user.first_name}}, See Your Game Details Below:</h4>
-    </div>
-
-    <div class="game_details">
-        <p>What Are We Playing?</p>
-        <p>{{game_id.sport}}</p>
-        <p>When Are We Playing?</p>
-        <p>{{game_id.date}}</p>
-        <p>What Time Are We Playing?</p>
-        <p>{{game_id.time}}</p>
-        <p>Additonal Comments:</p>
-        <p>{{game_id.comment}}</p>
-    </div>
-    <br>
-
-    <div class="location">
-        <p>Location Details:</p>
-        <p>{{game_id.location}}</p>
-        <p>{{game_id.city}}</p>
-        <p>{{game_id.zipcode}}</p>
-        <p>{{game_id.state}}</p>
-    </div>
-
-    <div class="joins">
-        <h3>See Everyone Who Has Joined:</h3>
-        {% for player in players %}
-            {{player.first_name}} {{player.last_name}}<br>
-        {% endfor %}
+        <h4>Hi {{user.first_name}}, See Your {{game_id.sport | title}} Game Details Below:</h4>
     </div><br>
 
-    <div class="buttons">
-        <form action="/sports/confirm" method="POST">
+    <div id="sport" class="game_details d-inline-block pt-3 pr-4 pb-2 pl-3 mb-3">
+        <p id="d_first" class="font-weight-bold">What Are We Playing?</p>
+        <p>{{game_id.sport}}</p>
+        <p id="d_second" class="font-weight-bold">When Are We Playing?</p>
+        <p>{{game_id.date}}</p>
+        <p id="d_third" class="font-weight-bold">What Time Are We Playing?</p>
+        <p>{{game_id.time}}</p>
+        <p id="d_fourth" class="font-weight-bold">Additonal Comments:</p>
+        <p>{{game_id.comment}}</p>
+    </div>
+
+    <div id="location" class="location d-inline-block pt-3 pb-3 pl-3 mb-3 text-left pr-4">
+        <address class="font-weight-bold mb-1" id="location_header">Location Details:</address>
+        <address class="mb-1"> <span class="font-weight-bold">Location: </span>{{game_id.location}}</address>
+        <address class="mb-1"> <span class="font-weight-bold">City: </span>{{game_id.city}}</address>
+        <address class="mb-1"> <span class="font-weight-bold">Zip Code: </span>{{game_id.zipcode}}</address>
+        <address class="mb-1"> <span class="font-weight-bold">State: </span>{{game_id.state}}</address>
+    </div>
+
+    <div id="joins" class="joins pt-3 pb-1 pl-3 mb-3 pr-4">
+        <h3 id="j_title">See Everyone Who Has Joined:</h3>
+        {% for player in players %}
+            <p id="j_info">{{player.first_name}} {{player.last_name}}</p>
+        {% endfor %}
+    </div>
+
+    <div id="clicks" class="buttons d-inline-block pt-3 pb-3 pr-1 pl-1 text-center mb-4">
+        <form action="/sports/confirm" class="d-inline-block" method="POST">
             {% csrf_token %}
-            <input type="submit" value="Confirm and Return to Playground">
+            <input type="submit" id="b1" class="d-inline-block btn btn-info" value="Confirm and Return to Playground">
         </form>
 
         {% if user.id == game_id.captain.id %}
 
-        <form action="/sports/edit/{{game_id.id}}" method="POST">
+        <form action="/sports/edit/{{game_id.id}}" class="d-inline-block" method="POST">
             {% csrf_token %}
-            <input type="submit" value="Edit Game">
+            <input type="submit" id="b2" class="d-inline-block btn btn-warning" value="Edit Game">
         </form>
 
-        <form action="/sports/delete/{{game_id.id}}" method="POST">
+        <form action="/sports/delete/{{game_id.id}}" class="d-inline-block" method="POST">
             {% csrf_token %}
-            <input type="submit" value="Delete Game">
+            <input type="submit" id="b3" class="d-inline-block btn btn-danger" value="Delete Game">
         </form>
     </div>
 
