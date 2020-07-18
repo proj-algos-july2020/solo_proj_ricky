@@ -11,18 +11,18 @@
 </head>
 <body class="container pl-0">
 
-    <div class="header form-group row text-left mt-4 pt-1">
+    <div class="header form-group row text-left mt-4 pt-1 pb-1">
         <div class="col-8 ml-2">
-            <h1>Hi, Who's Got Next?!</h1>
+            <h1>WHO GOT NEXT?!</h1>
         </div>
-        <div class="col">
-            <a href="/logout">Logout</a>
+        <div class="col text-right mr-2">
+            <a href="/logout" class="btn btn-secondary pt-1 pb-1 mt-2 btn-lg text-right" class="logout">Logout</a>
         </div>
     </div>
 
-    <div class="errors">
+    <div class="errors font-weight-bold">
         {% if messages %}
-        <ul class="messages">
+        <ul class="messages pt-2 pb-2">
             {% for message in messages %}
                 <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
             {% endfor %}
@@ -40,7 +40,7 @@
         <div class="title ml-3">
             <h3 class="text-left">Fill Out Your Game Info Below:</h3>
     
-            <p> <span class="font-weight-bold">Name:</span> {{user.first_name}} {{user.last_name}}</p>
+            <p> <span class="font-weight-bold">Game Captain:</span> {{user.first_name}} {{user.last_name}}</p>
         </div>
 
             <div class="form-group row ml-3">

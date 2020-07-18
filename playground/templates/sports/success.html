@@ -3,58 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/success.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <title>Success, Game Created</title>
 </head>
-<body>
+
+<body class="container">
     
-    <h1>Game Details</h1>
-    <h4>Hi {{user.first_name}}, See Your Game Details Below:</h4>
+    <div class="header">
+        <h1>Game Details</h1>
+        <h4>Hi {{user.first_name}}, See Your Game Details Below:</h4>
+    </div>
 
-<div>
-    <p>What Are We Playing?</p>
-    <p>{{game_id.sport}}</p>
-    <p>When Are We Playing?</p>
-    <p>{{game_id.date}}</p>
-    <p>What Time Are We Playing?</p>
-    <p>{{game_id.time}}</p>
-    <p>Additonal Comments:</p>
-    <p>{{game_id.comment}}</p>
-</div>
-<br>
+    <div class="game_details">
+        <p>What Are We Playing?</p>
+        <p>{{game_id.sport}}</p>
+        <p>When Are We Playing?</p>
+        <p>{{game_id.date}}</p>
+        <p>What Time Are We Playing?</p>
+        <p>{{game_id.time}}</p>
+        <p>Additonal Comments:</p>
+        <p>{{game_id.comment}}</p>
+    </div>
+    <br>
 
-<div>
-    <p>Location Details:</p>
-    <p>{{game_id.location}}</p>
-    <p>{{game_id.city}}</p>
-    <p>{{game_id.zipcode}}</p>
-    <p>{{game_id.state}}</p>
-</div>
+    <div class="location">
+        <p>Location Details:</p>
+        <p>{{game_id.location}}</p>
+        <p>{{game_id.city}}</p>
+        <p>{{game_id.zipcode}}</p>
+        <p>{{game_id.state}}</p>
+    </div>
 
-<div>
-    <h3>See Everyone Who Has Joined:</h3>
-    {% for player in players %}
-        {{player.first_name}} {{player.last_name}}<br>
-    {% endfor %}
-</div><br>
+    <div class="joins">
+        <h3>See Everyone Who Has Joined:</h3>
+        {% for player in players %}
+            {{player.first_name}} {{player.last_name}}<br>
+        {% endfor %}
+    </div><br>
 
-<form action="/sports/confirm" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Confirm and Return to Playground">
-</form>
+    <div class="buttons">
+        <form action="/sports/confirm" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Confirm and Return to Playground">
+        </form>
 
-{% if user.id == game_id.captain.id %}
+        {% if user.id == game_id.captain.id %}
 
-    <form action="/sports/edit/{{game_id.id}}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Edit Game">
-    </form>
+        <form action="/sports/edit/{{game_id.id}}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Edit Game">
+        </form>
 
-    <form action="/sports/delete/{{game_id.id}}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Delete Game">
-    </form>
+        <form action="/sports/delete/{{game_id.id}}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete Game">
+        </form>
+    </div>
 
-{% endif %}
+    {% endif %}
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -1,0 +1,30 @@
+body{
+
+    /* The image used */
+    background-image: url("../football.jpg");
+    
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.header{
+    background: rgba(245, 245, 245, 0.5);
+  }
+.game_details{
+    background: rgba(245, 245, 245, 0.7);
+}
+.location{
+    background: rgba(245, 245, 245, 0.7);   
+}
+.joins{
+    background: rgba(245, 245, 245, 0.7);
+}
+.buttons{
+    background: rgba(245, 245, 245, 0.7);
+}
