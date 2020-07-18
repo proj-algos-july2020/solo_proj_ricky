@@ -3,58 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/creategame.css' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>New Game Form</title>
 </head>
-<body>
+<body class="container pl-0">
 
-    <h1>Hi, Please Create Your Game Below!</h1>
-    <a href="/logout">Logout</a>
+    <div class="header form-group row text-left mt-4 pt-1">
+        <div class="col-8 ml-2">
+            <h1>Hi, Who's Got Next?!</h1>
+        </div>
+        <div class="col">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
 
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="errors">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
 
-    <form action="game_form" method="POST">
-        {% csrf_token %}
-        <h3>Who's Got Next?!</h3>
-        <h4>Fill out your game information below;</h4>
+    <!--------------------------------------------------------------------------------------------  -->
+    <!--------------------------------------------------------------------------------------------  -->
 
-        <p>Name: {{user.first_name}} {{user.last_name}}</p>
-        <p>State:</p>
-        <input type="text" name="state" placeholder="CA, TX, NV, etc." size="30">
+    <div class="mainform">
 
-        <p>City:</p>
-        <input type="text" name="city" placeholder="San Jose, Dallas, Seattle, etc." size="30">
-
-        <p>Zip Code:</p>
-        <input type="number" name="zipcode" placeholder="95121, 95135, etc.">
-
-        <p>Location:</p>
-        <input type="text" name="location" placeholder="(park, community center, etc.)" size="30">
-
-        <p>Sport:</p>
-        <input type="text" name="sport" placeholder="basketball, soccer, baseball, etc." size="30">
-
-        <p>When:</p>
-        <input type="date" name="date">
-
-        <p>What Time:</p>
-        <input type="time" name="time">
-
-        <p>Comments:</p>
-        <textarea name="comment" cols="40" rows="5" placeholder="Don't forget your basketball shoes, etc."></textarea><br><br>
-
-        <input type="submit" value="Create Game">
-    </form>
-
-    <form action="/sports/" method="POST">
-        {% csrf_token %}
-    <input type="submit" value="Return to Playground">
-    </form>
+        <form action="game_form" method="POST">
+            {% csrf_token %}
+        <div class="title ml-3">
+            <h3 class="text-left">Fill Out Your Game Info Below:</h3>
     
+            <p> <span class="font-weight-bold">Name:</span> {{user.first_name}} {{user.last_name}}</p>
+        </div>
+
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">State:</p>
+                    <div class="col-7">
+                        <input type="text" name="state" placeholder="CA, TX, NV, etc." class="form-control" size="30">
+                    </div>
+            </div>
+
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">City:</p>
+                    <div class="col-7">
+                        <input type="text" name="city" placeholder="San Jose, Dallas, Seattle, etc." class="form-control" size="30">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">Zip Code:</p>
+                    <div class="col-7">
+                        <input type="number" name="zipcode" placeholder="95121, 95135, etc." class="form-control">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">Location:</p>
+                    <div class="col-8">
+                        <input type="text" name="location" placeholder="(park, community center, etc.)" size="30" class="form-control">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">Sport:</p>
+                    <div class="col-8">
+                        <input type="text" name="sport" placeholder="basketball, soccer, baseball, etc." size="30" class="form-control">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">When:</p>
+                    <div class="col-6">
+                        <input type="date" name="date" class="form-control">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3">
+                <p class="font-weight-bold">What Time:</p>
+                    <div class="col-4">
+                        <input type="time" name="time" class="form-control">
+                    </div>
+            </div>
+        
+            <div class="form-group row ml-3 pb-0">
+                <p class="font-weight-bold">Comments:</p>
+                    <div class="col-9 pb-0">
+                        <textarea name="comment" cols="40" rows="5" placeholder="Don't forget your basketball shoes, etc." class="form-control pb-0"></textarea><br><br>
+                    </div>
+            </div>
+
+            <div class="form-group row ml-3 d-inline-block">
+                <div class=" d-inline-block">
+                    <input type="submit" value="Create Game" class="form-control d-inline-block btn btn-info btn-lg">
+                </div>
+            </div>
+
+            <!-- <div class="form-group row ml-3 d-inline-block">
+                <div class="col-5 d-inline-block">
+                    <a href="/sports/"> <button class="form-control d-inline-block">Return to Playground</button> </a>
+                </div>
+            </div> -->
+        </form>
+    
+        <div class="form-group row ml-3 d-inline-block">
+            <div class="col d-inline-block pl-0 pb-1">
+                <form action="/sports/" method="POST">
+                    {% csrf_token %}
+                <input type="submit" class="form-control d-inline-block btn btn-secondary btn-lg" value="Return to Playground">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 </body>
 </html>

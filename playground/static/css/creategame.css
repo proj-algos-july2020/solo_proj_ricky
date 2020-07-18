@@ -1,0 +1,28 @@
+body{
+
+    /* The image used */
+    background-image: url("../sunset_playground_picture.jpg");
+    
+    /* Full height */
+    height: 100%;
+    width: 100%;
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.header{
+    background: rgba(245, 245, 245, 0.7);
+    display: inline-block;
+    text-align: center;
+  }
+.mainform{
+    background: rgba(245, 245, 245, 0.7);
+    display: inline-block;
+  }
+body.container{
+    margin-left: 25px;
+    margin-bottom: 30px;
+}

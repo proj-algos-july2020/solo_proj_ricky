@@ -6,7 +6,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready(function(){
 
@@ -42,31 +42,34 @@
     <title>Playground</title>
 </head>
 
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------------------------------------- -->
+
 <body class="container">
 
-<div class="header p-4">
+<div class="header pt-3 pr-2 pb-2 pl-3">
     <div class="row">
         <div class="col-8">
-            <h2>Welcome to the Playground, {{user.first_name}} {{user.last_name}}!</h2>
+            <h2>Welcome to the Playground, {{user.first_name}}!</h2>
         </div>
 
         <div class="col">
             <form action="create_new_game" method="POST">
                 {% csrf_token %}
-                <input type="submit" class="btn btn-info" value="Create a New Game!">
+                <input type="submit" class="btn btn-info ml-4" value="Create a New Game!">
             </form>
         </div>
 
         <div class="col">
-            <a href="/logout">Logout</a>
+            <a href="/logout" class="btn btn-secondary ml-5">Logout</a>
         </div>
     </div>
 </div>
 
-<div class="searchbar">
+<div class="searchbar pt-1 pl-3 pr-3 pb-0">
     <form action="search" method="POST" id="search_bar">
         {% csrf_token %}
-        <h3>Search By:</h3>
+        <h4>Search By:</h4>
     <div class="form-row">
     
         <div class="form-group col" >
@@ -90,42 +93,50 @@
         <div class="form-group col">
             <input type="text" class="form-control" name="state" placeholder="State">
         </div>
-        <div class="col">
-            <input type="submit" class="btn btn-info btn-xs p-1 d-inline" value="Search">
+        <div class="form-group col-1">
+            <input type="submit" class="btn btn-info d-inline" value="Search">
         </div>
+        <!-- <div class="form-group col-1">
+            <a href="reset" id="reset"><button class="btn btn-secondary">Reset</button></a>
+        </div> -->
+    </form>
 
+    <div class="col">
+        <form action="reset" method="POST" id="reset">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-secondary btn-xs pt-1.5 pr-1.5 pb-1.5 pl-1.5 mr-2" value="Reset Search">
         </form>
     </div>
-</div>
+
+    </div>
+</div><br>
+
+<!-- ----------------------------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------------------------------------------------- -->
 
 
-
-<form action="reset" method="POST" id="reset">
-    {% csrf_token %}
-    <input type="submit" value="Reset Search">
-</form><br>
-
-
-<div class="header" id="games">
-    <table class="table table-hover table-bordered text-nowrap small">
-        <h3>View All Games</h3>
+<div class="header pt-1 mt-3" id="games">
+    <table class="table table-hover table-bordered d-inline-block table-striped">
+        <h3 class="pl-0">View All Games</h3>
         <tr>
-            <th>Details</th>
-            <th>Join</th>
-            <th>Originator</th>
-            <th>Sport</th>
-            <th>Location</th>
-            <th>What Day</th>
-            <th>Meet Up Time</th>
-            <th>City</th>
-            <th>Zip Code</th>
-            <th>State</th>
-            <th>Comments</th>
+            <thead class="thead-dark">
+                <th>Details</th>
+                <th>Join</th>
+                <th>Originator</th>
+                <th>Sport</th>
+                <th>Location</th>
+                <th>What Day</th>
+                <th>Meet Up Time</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>State</th>
+                <th>Comments</th>
+            </thead>
         </tr>
         {% for this_game in all_games %}
         <tr>
-            <td><a href="view_game/{{this_game.id}}">View Game</a></td>
-            <td><a href="join_game/{{this_game.id}}">Join</a></td>
+            <td><a href="view_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">View Game</a></td>
+            <td><a href="join_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">Join</a></td>
             <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
             <td>{{this_game.sport}}</td>
             <td>{{this_game.location}}</td>
@@ -140,32 +151,37 @@
     </table>
 </div><br>
 
-
-    <table>
-        <h3>View My Games</h3>
-        <tr>
-          <th>Details</th>
-          <th>Remove From List</th>
-          <th>Originator</th>
-          <th>Sport</th>
-          <th>What Day</th>
-          <th>Meet Up Time</th>
-          <th>Comments</th>
-        </tr>
+<div class="header">
+    <table class="table table-hover table-bordered table-striped mb-4">
+        <h3 class="pl-0 pt-1">View My Games</h3>
+        <thead class="thead-dark">
+            <tr>
+                <th>Details</th>
+                <th>Remove From List</th>
+                <th>Originator</th>
+                <th>Sport</th>
+                <th>What Day</th>
+                <th>Meet Up Time</th>
+                <th>Comments</th>
+              </tr>
+        </thead>
         {% for user_game in all_games %}
             {% if user in user_game.joiner.all %}
             <tr>
-                <td><a href="view_game/{{user_game.id}}">View Game</a></td>
-                <td><a href="remove_my_game/{{user_game.id}}">Remove</a></td>
+                <td><a href="view_game/{{user_game.id}}" class="badge badge-info m-0 pr-2 pl-2 pt-2 pb-2 border border-info">View Game</a></td>
+                <td><a href="remove_my_game/{{user_game.id}}" class="badge badge-secondary m-0 pr-2 pl-2 pt-2 pb-2">Remove</a></td>
                 <td>{{user_game.captain.first_name}} {{user_game.captain.last_name}}</td>
                 <td>{{user_game.sport}}</td>
                 <td>{{user_game.date}}</td>
                 <td>{{user_game.time}}</td>
-                <td>{{user_game.comment}}</td>
+                <td class="text-wrap">{{user_game.comment}}</td>
             </tr>
             {% endif %}
         {% endfor %}
       </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 </body>
 </html>

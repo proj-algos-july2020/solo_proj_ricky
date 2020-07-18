@@ -1,10 +1,11 @@
 body{
 
     /* The image used */
-    background-image: url("../sunset_playground_picture.jpg");
+    background-image: url("../backboard.jpg");
     
     /* Full height */
     height: 100%;
+    width: 100%;
     
     /* Center and scale the image nicely */
     background-position: center;
@@ -14,11 +15,31 @@ body{
 }
 
 .header{
-    background: rgba(239, 243, 239, 0.4);
+    background: rgba(245, 245, 245, 0.7);
   }
 
 .searchbar{
-    background: rgba(239, 243, 239, 0.4);
+    background: rgba(245, 245, 245, 0.7);
 }
+/* .searchbar div{
+    border: 1px solid red;
+} */
+h3.pl-0{
+    text-align: center;
+}
+table{
+    vertical-align: middle;
+    text-align: center;
+}
+.thead-dark{
+    text-align: center;
+    vertical-align: middle;
+}
+.form-group col{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
 
 
