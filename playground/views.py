@@ -117,7 +117,7 @@ def remove_my_game(request, id):
     return redirect("/sports/")
 
 def search(request):
-    search = Game.objects.all()
+    search = Game.objects.all().order_by("-created_at")
     if request.POST['sport'] != '':
         search=search.filter(sport=request.POST['sport'])
     if request.POST['location'] != '':

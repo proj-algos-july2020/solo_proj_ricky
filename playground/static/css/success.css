@@ -1,7 +1,7 @@
 body{
 
     /* The image used */
-    background-image: url("../football.jpg");
+    background-image: url("../sports2.jpeg");
     
     /* Full height */
     height: 100%;
@@ -14,19 +14,24 @@ body{
     
 }
 .header{
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
   }
 .game_details{
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
 }
 .location{
-    background: rgba(245, 245, 245, 0.7);   
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
 }
 .joins{
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
 }
 .buttons{
-    background: rgba(245, 245, 245, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
 }
 h1{
     border-bottom: 2px solid black;

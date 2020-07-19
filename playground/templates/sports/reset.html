@@ -20,12 +20,12 @@
         <tr>
             <td><a href="view_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">View Game</a></td>
             <td><a href="join_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">Join</a></td>
-            <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
-            <td>{{this_game.sport}}</td>
-            <td>{{this_game.location}}</td>
+            <td>{{this_game.captain.first_name | title}} {{this_game.captain.last_name | title}}</td>
+            <td>{{this_game.sport | title}}</td>
+            <td>{{this_game.location | title}}</td>
             <td>{{this_game.date}}</td>
             <td>{{this_game.time}}</td>
-            <td>{{this_game.city}}</td>
+            <td>{{this_game.city | title}}</td>
             <td>{{this_game.zipcode}}</td>
             <td>{{this_game.state}}</td>
             <td>{{this_game.comment}}</td>

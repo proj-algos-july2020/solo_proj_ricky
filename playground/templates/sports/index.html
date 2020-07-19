@@ -6,7 +6,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
     <script>
         $(document).ready(function(){
 
@@ -37,7 +38,6 @@
             })
         });
     </script>
-
 
     <title>Playground</title>
 </head>
@@ -137,12 +137,12 @@
         <tr>
             <td><a href="view_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">View Game</a></td>
             <td><a href="join_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">Join</a></td>
-            <td>{{this_game.captain.first_name}} {{this_game.captain.last_name}}</td>
-            <td>{{this_game.sport}}</td>
-            <td>{{this_game.location}}</td>
+            <td>{{this_game.captain.first_name | title}} {{this_game.captain.last_name | title}}</td>
+            <td>{{this_game.sport | title}}</td>
+            <td>{{this_game.location | title}}</td>
             <td>{{this_game.date}}</td>
             <td>{{this_game.time}}</td>
-            <td>{{this_game.city}}</td>
+            <td>{{this_game.city | title}}</td>
             <td>{{this_game.zipcode}}</td>
             <td>{{this_game.state}}</td>
             <td>{{this_game.comment}}</td>
@@ -170,8 +170,8 @@
             <tr>
                 <td><a href="view_game/{{user_game.id}}" class="badge badge-info m-0 pr-2 pl-2 pt-2 pb-2 border border-info">View Game</a></td>
                 <td><a href="remove_my_game/{{user_game.id}}" class="badge badge-secondary m-0 pr-2 pl-2 pt-2 pb-2">Remove</a></td>
-                <td>{{user_game.captain.first_name}} {{user_game.captain.last_name}}</td>
-                <td>{{user_game.sport}}</td>
+                <td>{{user_game.captain.first_name | title}} {{user_game.captain.last_name | title}}</td>
+                <td>{{user_game.sport | title}}</td>
                 <td>{{user_game.date}}</td>
                 <td>{{user_game.time}}</td>
                 <td class="text-wrap">{{user_game.comment}}</td>
@@ -180,8 +180,6 @@
         {% endfor %}
       </table>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 </body>
 </html>
