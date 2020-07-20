@@ -18,8 +18,8 @@
         </tr>
         {% for this_game in all_games %}
         <tr>
-            <td><a href="view_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">View Game</a></td>
-            <td><a href="join_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-1 pb-1 border border-info">Join</a></td>
+            <td><a href="view_game/{{this_game.id}}" class="badge badge-info m-0 pr-1 pl-1 pt-2 pb-2 border border-info">View Game</a></td>
+            <td><a href="join_game/{{this_game.id}}" class="badge badge-info m-0 pr-2 pl-2 pt-2 pb-2 border border-info align-middle text-center">Join</a></td>
             <td>{{this_game.captain.first_name | title}} {{this_game.captain.last_name | title}}</td>
             <td>{{this_game.sport | title}}</td>
             <td>{{this_game.location | title}}</td>

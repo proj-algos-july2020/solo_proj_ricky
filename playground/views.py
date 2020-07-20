@@ -1,18 +1,32 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .models import *
+import datetime
+from pytz import timezone
 from django.apps import apps
 User = apps.get_model('login', 'User')
 
 def index(request):
     user = User.objects.get(id=request.session['userid'])
     all_games=Game.objects.all().order_by("-created_at")
+    outdated_game(all_games)
 
     context = {
         "user":user,
         "all_games":all_games,
     }
     return render(request, "sports/index.html",context)
+
+def outdated_game(all_games):
+    todays_date=datetime.datetime.now(timezone("US/Pacific")).strftime("%Y-%m-%d %H:%M:%S") #This line converts todays_date from a datetime to a string with the format Y-m-d H:M:S
+    todays_date = datetime.datetime.strptime(todays_date,"%Y-%m-%d %H:%M:%S") #This line converts todays_date from a string back to a datetime, because we kept getting errors.... its stupid dont ask...
+
+    for game in all_games:
+        date=game.date
+        time=game.time
+        date=datetime.datetime(date.year, date.month, date.day, time.hour, time.minute)
+        if date < todays_date:
+            game.delete()
 
 def create_new_game(request):
     user=User.objects.get(id=request.session['userid'])
@@ -119,19 +133,19 @@ def remove_my_game(request, id):
 def search(request):
     search = Game.objects.all().order_by("-created_at")
     if request.POST['sport'] != '':
-        search=search.filter(sport=request.POST['sport'])
+        search=search.filter(sport__iexact=request.POST['sport'])
     if request.POST['location'] != '':
-        search=search.filter(location=request.POST['location'])
+        search=search.filter(location__iexact=request.POST['location'])
     if request.POST['date'] != '':
         search=search.filter(date=request.POST['date'])
     if request.POST['time'] != '':
         search=search.filter(time=request.POST['time'])
     if request.POST['city'] != '':
-        search=search.filter(city=request.POST['city'])
+        search=search.filter(city__iexact=request.POST['city'])
     if request.POST['zipcode'] != '':
         search=search.filter(zipcode=request.POST['zipcode'])
     if request.POST['state'] != '':
-        search=search.filter(state=request.POST['state'])
+        search=search.filter(state__iexact=request.POST['state'])
 
     context={
         "all_games":search,

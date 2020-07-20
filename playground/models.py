@@ -39,8 +39,8 @@ class GameManager(models.Manager):
         if len(postData['zipcode'])>6:
             errors['zipcode']="The Zip Code needs to be 5 digits."
 
-        if len(postData['date'])<1:
-            errors['date'] = "A start date MUST be provided"
+        if len(postData['date'])<1 or len(postData['time'])<1:
+            errors['date'] = "Both a start date and a time MUST be provided"
         else:
             date = datetime.datetime.strptime(postData['date'], '%Y-%m-%d')
             time = datetime.datetime.strptime(postData['time'], '%H:%M')

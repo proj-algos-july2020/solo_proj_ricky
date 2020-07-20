@@ -11,29 +11,29 @@
 </head>
 <body class="container pl-0">
 
-    <div class="header form-group row text-left mt-4 pt-1 pb-1">
-        <div class="col-8 ml-2">
+    <div id="title_block" class="header form-group row text-center mt-4 pt-1 pb-1">
+        <div class="col-8 ml-4">
             <h1>WHO GOT NEXT?!</h1>
         </div>
         <div class="col text-right mr-2">
             <a href="/logout" class="btn btn-secondary pt-1 pb-1 mt-2 btn-lg text-right" class="logout">Logout</a>
         </div>
-    </div>
+    </div><br>
 
-    <div class="errors font-weight-bold">
+    <div id="failure" class="errors font-weight-bold mb-2 d-inline-block">
         {% if messages %}
-        <ul class="messages pt-2 pb-2">
+        <ul class="messages pt-2 pb-2 d-inline-block">
             {% for message in messages %}
                 <li {% if message.tags %} class="{{message.tags}}"{% endif %} >{{message}}</li>
             {% endfor %}
         </ul>
         {% endif %}
-    </div>
+    </div><br>
 
     <!--------------------------------------------------------------------------------------------  -->
     <!--------------------------------------------------------------------------------------------  -->
 
-    <div class="mainform">
+    <div class="mainform ml-0">
 
         <form action="game_form" method="POST">
             {% csrf_token %}
@@ -87,7 +87,7 @@
         
             <div class="form-group row ml-3">
                 <p class="font-weight-bold">What Time:</p>
-                    <div class="col-4">
+                    <div class="col-5">
                         <input type="time" name="time" class="form-control">
                     </div>
             </div>
