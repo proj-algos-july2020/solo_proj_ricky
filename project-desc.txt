@@ -1,0 +1,11 @@
+Ricky's solo project description:
+
+I love playing sports, and more specifically, playing basketball. I've played basketball since I was in 2nd grade. I've played at a competitive level and I want to build a project centered around playing basketball outdoors with friends. 
+
+I grew up playing basketball outside and I feel like that element has been lost. Most kids nowadays want to go to the nearest gym, and while that is fine, I still think playing on the black top during the evenings with close friends is super fun. 
+
+My plan is to build a login/registration page. After passing the validations surrounding the login and registration page, I want the user to enter the "playfield" which is essentially the dashboard that shows a big table with a variety of sports options listed. I want the use user to filter out the table for whatever sport they want to play (i.e., basketball). Then also filter out based on location. Once the user has narrowed their location out, they can then select the game they want to play and hit a join button.
+
+If the user doesn't see a game he/she likes, they can then create their own game where they would be taken to a "Add" page to include the relevant information for their specific game. They will be required to input the game, the location, etc. Once they hit confirm, this game will then be added to the "playfield" aka the dashboard for everyone to see and join. The creator of this game can also edit their game and/or delete their game if they so choose. 
+
+I hope to be able to use an API for geolocation as well as an API for weather to also give weather information for your area in case its raining for example. 
